@@ -19,8 +19,6 @@ use App\Providers\CalendarDataProvider;
 
 return [
 
-    'my-calendar' => [
-
         /*
          * The class of the calendar data provider for this Nova Calendar
            Don't forget to add the proper use statement above.
@@ -32,7 +30,7 @@ return [
          * URI for this Nova Calendar (will be appended to the Nova path, /nova by default)
            This key is required.
          */
-        'uri' => 'my-calendar',
+        'uri' => 'bookings/calendar',
 
         /*
          * Browser window/tab title for this Nova Calendar.
@@ -40,9 +38,7 @@ return [
            If you remove it or set it to an empty string, the dynamic title displayed above 
            the calendar view will be used as window/tab title in the browser.
          */
-        'windowTitle' => 'Nova Calendar',
-
-    ],
+        'windowTitle' => 'Booking Calendar',
 
     // 'calendar2' => [
     //     'uri' => 'wdelfuego/second-calendar',

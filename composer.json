@@ -1,5 +1,5 @@
 {
-    "name": "wdelfuego/nova-calendar",
+    "name": "wdelfuego/nova-calendar-7-evios",
     "description": "A powerful event calendar Tool for Laravel's Nova.",
     "keywords": [
         "laravel",
@@ -34,5 +34,11 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ]
 }
