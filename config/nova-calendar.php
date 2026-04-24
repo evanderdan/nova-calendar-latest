@@ -19,6 +19,8 @@ use App\Providers\CalendarDataProvider;
 
 return [
 
+    'bookings/calendar' => [
+
         /*
          * The class of the calendar data provider for this Nova Calendar
            Don't forget to add the proper use statement above.
@@ -39,6 +41,8 @@ return [
            the calendar view will be used as window/tab title in the browser.
          */
         'windowTitle' => 'Booking Calendar',
+
+    ],
 
     // 'calendar2' => [
     //     'uri' => 'wdelfuego/second-calendar',
