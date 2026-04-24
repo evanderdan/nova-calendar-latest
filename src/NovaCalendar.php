@@ -102,7 +102,7 @@ class NovaCalendar extends Tool
     {
         return MenuSection::make($this->menuLabel)
             ->icon($this->menuIcon)
-            ->path($this->uri());
+            ->path(config('nova-calendar.uri', 'bookings/calendar'));
         
     }
     

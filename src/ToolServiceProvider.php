@@ -92,11 +92,11 @@ class ToolServiceProvider extends ServiceProvider
                 }
                 else
                 {
-                    Nova::router(['nova', Authorize::class], $calendarConfig['uri'])
+                    Nova::router(['nova', Authorize::class], config('nova-calendar.uri', 'bookings/calendar'))
                         ->group(__DIR__.'/../routes/inertia.php');
 
                     Route::middleware(['nova', Authorize::class])
-                        ->prefix('nova-vendor/wdelfuego/nova-calendar/' .$calendarConfig['uri'])
+                        ->prefix('nova-vendor/bookings/calendar/' .$calendarConfig['uri'])
                         ->group(__DIR__.'/../routes/api.php');
                 }
             }
