@@ -16,7 +16,7 @@
  
 namespace Wdelfuego\NovaCalendar\Contracts;
 
-use Wdelfuego\NovaCalendar\View\AbstractView as View;
+// use Wdelfuego\NovaCalendar\View\AbstractView as View;
 
 interface CalendarDataProviderInterface
 {
@@ -35,5 +35,5 @@ interface CalendarDataProviderInterface
     public function eventStyles() : array;
     
     // Allows the data provider to customize the data view just before sending it to the front-end
-    public function customizeView(View $view) : View;
+    // public function customizeView(View $view) : View;
 }
