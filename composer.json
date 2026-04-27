@@ -14,9 +14,10 @@
       "proprietary"
     ],
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^7.4|^8.0|^8.4",
         "illuminate/support": "^8.0|^9.0|^10|^11|^12|^13",
-        "laravel/nova": "^4.2.4|^5.2.5"
+        "laravel/nova": "^4.2.4|^5.2.5",
+        "wdelfuego/nova-datetime": "^1.0.1"
     },
     "autoload": {
         "psr-4": {
