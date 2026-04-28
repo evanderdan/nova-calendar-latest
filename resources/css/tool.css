@@ -29,13 +29,19 @@
 }
 
 .nova-calendar.noselect {
-cursor: default;
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+  cursor: default;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
@@ -46,8 +52,10 @@ cursor: default;
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .noscrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 
@@ -59,19 +67,6 @@ cursor: default;
   border: 0px #555 solid;
   position: relative;
   height: 3em;
-  display: flex;
-/*  flex-direction: row;*/
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-#nc-control .left-items,
-#nc-control .center-items,
-#nc-control .right-items {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px; /* spacing between buttons */
 }
 
 #nc-control a.disabled {
@@ -79,7 +74,8 @@ cursor: default;
   opacity: 0.2;
 }
 
-#nc-control > a, #nc-control > h1 {
+#nc-control>a,
+#nc-control>h1 {
   display: block;
   position: absolute;
   margin-left: auto;
@@ -89,16 +85,20 @@ cursor: default;
   text-align: center;
 }
 
-#nc-control h1 span {
-  cursor: pointer;
-  margin-left: 1rem;
+#nc-control>a.left {
+  left: 0;
+  right: initial;
 }
 
-#nc-control a.button {
-  border: 1px rgba(var(--colors-gray-500), 0.2) solid;
-  border-radius: 6px;
-  padding: 0.5rem;
+#nc-control>a.right {
+  right: 0;
+  left: initial;
 }
+
+#nc-control h1 span {
+  cursor: pointer;
+}
+
 
 /*
  *  Calendar global
@@ -127,21 +127,61 @@ div.nova-calendar .week {
   grid-template-columns: repeat(7, 1fr);
 }
 
-div.nova-calendar .nc-col-1 { grid-column: 1 / 2; }
-div.nova-calendar .nc-col-2 { grid-column: 2 / 3; }
-div.nova-calendar .nc-col-3 { grid-column: 3 / 4; }
-div.nova-calendar .nc-col-4 { grid-column: 4 / 5; }
-div.nova-calendar .nc-col-5 { grid-column: 5 / 6; }
-div.nova-calendar .nc-col-6 { grid-column: 6 / 7; }
-div.nova-calendar .nc-col-7 { grid-column: 7 / -1; }
+div.nova-calendar .nc-col-1 {
+  grid-column: 1 / 2;
+}
 
-div.nova-calendar .nc-event.multi.span-1 { grid-column-end: span 1; }
-div.nova-calendar .nc-event.multi.span-2 { grid-column-end: span 2; }
-div.nova-calendar .nc-event.multi.span-3 { grid-column-end: span 3; }
-div.nova-calendar .nc-event.multi.span-4 { grid-column-end: span 4; }
-div.nova-calendar .nc-event.multi.span-5 { grid-column-end: span 5; }
-div.nova-calendar .nc-event.multi.span-6 { grid-column-end: span 6; }
-div.nova-calendar .nc-event.multi.span-7 { grid-column-end: span 7; }
+div.nova-calendar .nc-col-2 {
+  grid-column: 2 / 3;
+}
+
+div.nova-calendar .nc-col-3 {
+  grid-column: 3 / 4;
+}
+
+div.nova-calendar .nc-col-4 {
+  grid-column: 4 / 5;
+}
+
+div.nova-calendar .nc-col-5 {
+  grid-column: 5 / 6;
+}
+
+div.nova-calendar .nc-col-6 {
+  grid-column: 6 / 7;
+}
+
+div.nova-calendar .nc-col-7 {
+  grid-column: 7 / -1;
+}
+
+div.nova-calendar .nc-event.multi.span-1 {
+  grid-column-end: span 1;
+}
+
+div.nova-calendar .nc-event.multi.span-2 {
+  grid-column-end: span 2;
+}
+
+div.nova-calendar .nc-event.multi.span-3 {
+  grid-column-end: span 3;
+}
+
+div.nova-calendar .nc-event.multi.span-4 {
+  grid-column-end: span 4;
+}
+
+div.nova-calendar .nc-event.multi.span-5 {
+  grid-column-end: span 5;
+}
+
+div.nova-calendar .nc-event.multi.span-6 {
+  grid-column-end: span 6;
+}
+
+div.nova-calendar .nc-event.multi.span-7 {
+  grid-column-end: span 7;
+}
 
 
 /*
@@ -158,18 +198,14 @@ div.nova-calendar .day {
 
 div.nova-calendar .day:not(.withinRange) {
   opacity: 0.5;
-  background: repeating-linear-gradient(
-    -45deg,
-    rgba(225,225,255, 0.1),
-    rgba(225,225,255, 0.1) 4px,
-    rgba(100,100,100, 0.1) 4px,
-    rgba(100,100,100, 0.1) 6px
-  );
+  background: repeating-linear-gradient(-45deg,
+      rgba(225, 225, 255, 0.1),
+      rgba(225, 225, 255, 0.1) 4px,
+      rgba(100, 100, 100, 0.1) 4px,
+      rgba(100, 100, 100, 0.1) 6px);
 }
 
-div.nova-calendar .day.today {
-
-}
+div.nova-calendar .day.today {}
 
 div.nova-calendar .dayheader {
   z-index: 1;
@@ -214,7 +250,7 @@ div.nova-calendar .dayheader span.badge {
  */
 
 div.nova-calendar .week-events {
-  z-index: 0;
+  z-index: 2;
   margin-top: 2.2em;
   grid-column: 1 / -1;
   grid-row: 1;
@@ -224,7 +260,7 @@ div.nova-calendar .week-events {
 }
 
 div.nova-calendar .single-day-events {
-  border: 0px #f00 solid;      
+  border: 0px #f00 solid;
   grid-row-start: span 9000;
   min-height: 2px;
   margin-bottom: 1em;
@@ -276,7 +312,7 @@ div.nova-calendar div.nc-event.clickable {
 div.nova-calendar div.nc-event div.name {
   grid-row: 1/2;
   grid-column: 1/2;
-  white-space: nowrap; 
+  white-space: nowrap;
   overflow: scroll;
   border: 0px #fff dashed;
   font-weight: bold;
@@ -308,7 +344,7 @@ div.nova-calendar div.nc-event div.badges {
 div.nova-calendar div.nc-event div.badges span.badge-bg {
   display: inline-block;
   border-radius: 4px;
-  background-color: rgba(50,50,64,0.5);
+  background-color: rgba(50, 50, 64, 0.5);
   border-bottom: 1px rgba(var(--colors-primary-500), 0.5) solid;
   margin-left: 0.5px;
   margin-right: 0.5px;
@@ -362,31 +398,87 @@ div.nova-calendar .nc-event.multi {
 }
 
 div.nova-calendar .nc-event:not(.starts) {
-  border-left: 1px rgba(228,228,228,0.6) dashed;
+  border-left: 1px rgba(228, 228, 228, 0.6) dashed;
   opacity: 0.8;
 }
 
 div.nova-calendar .nc-event:not(.ends) {
-  border-right: 1px rgba(228,228,228,0.6) dashed;
+  border-right: 1px rgba(228, 228, 228, 0.6) dashed;
 }
 
 div.nova-calendar div.nc-event.multi div.name {
-  white-space: nowrap; 
+  white-space: nowrap;
   overflow: scroll;
   grid-row: 1 / -1;
   grid-column: 1 / 2;
 }
 
 div.nova-calendar div.nc-event.multi div.badges {
-  white-space: nowrap; 
+  white-space: nowrap;
   overflow: scroll;
   grid-row: 1 / -1;
   grid-column: 3 / -1;
 }
 
 div.nova-calendar div.nc-event.multi div.content {
-  white-space: nowrap; 
+  white-space: nowrap;
   overflow: scroll;
   grid-row: 1 / -1;
   grid-column: 2 / 3;
+}
+
+.filter-boxes-container {
+  justify-content: space-between;
+}
+
+.filter-box-container {
+  justify-content: space-between;
+  display: flex;
+  /* width: 32%; */
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  transition: all .5s ease-in-out;
+  overflow: auto;
+}
+
+.thirds {
+  width: 32%;
+}
+
+.half-and-half {
+  width: 49%;
+}
+
+.filter-container {
+  background-color: white;
+  padding: 10px;
+  max-height: 220px;
+  overflow: auto;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.filter-container h5 {
+  font-size: 16px;
+}
+
+.filter-item {
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+}
+
+.filter-item label {
+  margin-left: 10px;
+}
+
+.show-filter-button {
+  padding: 15px;
+  color: black;
+  background-color: lightgray;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  width: fit-content;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 10px;
 }
