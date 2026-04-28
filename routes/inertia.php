@@ -18,6 +18,8 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
+use Wdelfuego\NovaCalendar\Http\Controllers\CalendarController;
+
 /*
 |--------------------------------------------------------------------------
 | Tool Routes
@@ -29,7 +31,4 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 |
 */
 
-// Route::get('/', function (NovaRequest $request) {
-//     return inertia('NovaCalendar');
-// });
 Route::get('/', [CalendarController::class, 'index']);
