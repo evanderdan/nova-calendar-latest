@@ -21,6 +21,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 use Wdelfuego\NovaCalendar\Contracts\ViewInterface;
 use Wdelfuego\NovaCalendar\Contracts\CalendarDataProviderInterface;
+use Illuminate\Support\Facades\Log;
 
 abstract class AbstractView implements ViewInterface
 {
