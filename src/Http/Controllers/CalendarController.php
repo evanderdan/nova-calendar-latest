@@ -56,7 +56,6 @@ class CalendarController extends BaseController
 
     public function getCalendarData(NovaRequest $request, string $view = 'month')
     {
-        Log::debug('in here - getCalendarData');
         $requestUri = substr($request->url(), strlen($request->schemeAndHttpHost()));
 
         // Get calendar URI from full request URI by ditching the prefix and the last path element (view)
@@ -64,6 +63,9 @@ class CalendarController extends BaseController
         $calendarUri = substr($calendarUri, 0, strrpos($calendarUri, '/'));
 
         $dataProvider = $this->getCalendarDataProviderForUri($calendarUri)->withRequest($request);
+
+        Log::debug('in here - getCalendarData', [$requestUri, $calendarUri, $dataProvider]);
+
         if($request->query('isInitRequest'))
         {
             $dataProvider->setActiveFilterKey($dataProvider->defaultFilterKey());
