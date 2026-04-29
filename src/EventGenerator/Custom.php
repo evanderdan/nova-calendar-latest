@@ -42,8 +42,10 @@ abstract class Custom extends NovaEventGenerator
         foreach($query->cursor() as $model)
         {
             $resource = new $novaResourceClass($model);
+            Log::debug('--------- iforeach ', [$model, $resource]);
             foreach($this->resourceToEvents($resource, $rangeStart, $rangeEnd) as $event)
             {
+                Log::debug('--------- in resourceToEvents', [$event]);
                 if(!$event instanceof Event)
                 {
                     throw new \Exception(get_class($this) ."::resourceToEvents() returned at least one value that is not a valid calendar Event");
