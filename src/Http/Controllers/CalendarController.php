@@ -19,6 +19,7 @@ namespace Wdelfuego\NovaCalendar\Http\Controllers;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Carbon;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Illuminate\Support\Facades\Log;
 
 use Wdelfuego\NovaCalendar\View\AbstractView as View;
 
@@ -55,6 +56,7 @@ class CalendarController extends BaseController
 
     public function getCalendarData(NovaRequest $request, string $view = 'month')
     {
+        Log::debug('in here - getCalendarData');
         $requestUri = substr($request->url(), strlen($request->schemeAndHttpHost()));
 
         // Get calendar URI from full request URI by ditching the prefix and the last path element (view)
