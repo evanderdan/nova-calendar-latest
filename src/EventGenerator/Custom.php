@@ -20,6 +20,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Laravel\Nova\Resource as NovaResource;
+use Illuminate\Support\Facades\Log;
 
 use Wdelfuego\NovaCalendar\Event;
 
@@ -30,9 +31,12 @@ abstract class Custom extends NovaEventGenerator
     
     public function generateEvents(Carbon $rangeStart, Carbon $rangeEnd) : array
     {
+        Log::debug('--------- in generateevents');
+
         $novaResourceClass = $this->novaResourceClass();
         $eloquentModelClass = $novaResourceClass::$model;
         $query = $this->modelQuery($eloquentModelClass::query(), $rangeStart, $rangeEnd);
+        Log::debug('in generateevents', [$query]);
         
         $out = [];
         foreach($query->cursor() as $model)

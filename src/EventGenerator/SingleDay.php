@@ -20,12 +20,14 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Laravel\Nova\Resource as NovaResource;
 
+use Illuminate\Support\Facades\Log;
 use Wdelfuego\NovaCalendar\Event;
 
 class SingleDay extends NovaEventGenerator
 {
     public function generateEvents(Carbon $rangeStart, Carbon $rangeEnd) : array
     {
+        Log::debug('generateevents singleday');
         $novaResourceClass = $this->novaResourceClass();
         $eloquentModelClass = $novaResourceClass::$model;
         $toEventSpec = $this->toEventSpec();

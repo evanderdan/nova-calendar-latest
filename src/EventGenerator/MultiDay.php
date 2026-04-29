@@ -19,6 +19,7 @@ namespace Wdelfuego\NovaCalendar\EventGenerator;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Laravel\Nova\Resource as NovaResource;
+use Illuminate\Support\Facades\Log;
 
 use Wdelfuego\NovaCalendar\Event;
 
@@ -26,6 +27,7 @@ class MultiDay extends NovaEventGenerator
 {
     public function generateEvents(Carbon $rangeStart, Carbon $rangeEnd) : array
     {
+        Log::debug('geneerateecents multiday');
         $novaResourceClass = $this->novaResourceClass();
         $eloquentModelClass = $novaResourceClass::$model;
         $toEventSpec = $this->toEventSpec();
