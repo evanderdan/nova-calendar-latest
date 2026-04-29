@@ -63,6 +63,16 @@ abstract class AbstractView implements ViewInterface
     {
         $this->updateViewRanges($dataProvider);
 
+        Log::debug('calendarData', array_merge([
+            'windowTitle' => $dataProvider->windowTitle(),
+            'title' => $dataProvider->titleForView($this->specifier()),
+            'styles' => array_replace_recursive($this->defaultStyles(), $dataProvider->eventStyles()),
+            'filters' => $dataProvider->filtersToArray(),
+            'resetFiltersLabel' => $dataProvider->resetFiltersLabel(),
+            'activeFilterKey' => $dataProvider->activeFilterKey(),
+            'monthLabels' => $dataProvider->monthLabels()
+        ], $this->viewData($dataProvider)));
+
         return array_merge([
             'windowTitle' => $dataProvider->windowTitle(),
             'title' => $dataProvider->titleForView($this->specifier()),
