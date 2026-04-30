@@ -71,6 +71,7 @@ class CalendarController extends BaseController
     {
         $year = $request->get('year', date('Y'));
         $month = $request->get('month', date('m'));
+        Log::debug('getMonthCalendarData', [$year, $month]);
         while ($month > 12) {
             $year += 1;
             $month -= 12;
@@ -83,12 +84,21 @@ class CalendarController extends BaseController
         $bookingStatus = $request->get('bookingStatus') === 'null' ? null : $request->get('bookingStatus');
         $bookingType = $request->get('bookingType') === 'null' ? null : $request->get('bookingType');
 
+        Log::debug('getMonthCalendarData', [$installerId, $bookingStatus, $bookingType]);
         $this->dataProvider->setRequest($this->request)
             ->setYearAndMonth($year, $month)
             ->setInstallerIds($installerId)
             ->setBookingStatus($bookingStatus)
             ->setBookingType($bookingType);
 
+        Log::debug('getMonthCalendarData', [
+            'year' => $year,
+            'month' => $month,
+            'title' => $this->dataProvider->title(),
+            'columns' => $this->dataProvider->daysOfTheWeek(),
+            'weeks' => $this->dataProvider->calendarWeeks(),
+            'styles' => array_replace_recursive($this->defaultStyles(), $this->dataProvider->eventStyles()),
+        ]);
         return [
             'year' => $year,
             'month' => $month,
