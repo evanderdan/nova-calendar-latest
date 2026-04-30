@@ -20,27 +20,29 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Laravel\Nova\Resource as NovaResource;
+use Illuminate\Support\Facades\Log;
 
-use Wdelfuego\NovaCalendar\EventGenerator\EventGenerator;
 use Wdelfuego\NovaCalendar\Event;
 
-abstract class Custom extends EventGenerator
+abstract class Custom extends NovaEventGenerator
 {
     abstract protected function modelQuery(EloquentBuilder $queryBuilder, Carbon $startOfCalendar, Carbon $endOfCalendar) : EloquentBuilder;
-    // TODO v2 add rangeStart and rangeEnd arguments to resourceToEvents method
-    abstract protected function resourceToEvents(NovaResource $resource) : array;
+    abstract protected function resourceToEvents(NovaResource $resource, Carbon $startOfCalendar, Carbon $endOfCalendar) : array;
     
     public function generateEvents(Carbon $rangeStart, Carbon $rangeEnd) : array
     {
+        Log::debug('--------- in generateevents');
+
         $novaResourceClass = $this->novaResourceClass();
         $eloquentModelClass = $novaResourceClass::$model;
         $query = $this->modelQuery($eloquentModelClass::query(), $rangeStart, $rangeEnd);
+        Log::debug('in generateevents', [$query]);
         
         $out = [];
-        foreach($query->get() as $model)
+        foreach($query->cursor() as $model)
         {
             $resource = new $novaResourceClass($model);
-            foreach($this->resourceToEvents($resource) as $event)
+            foreach($this->resourceToEvents($resource, $rangeStart, $rangeEnd) as $event)
             {
                 if(!$event instanceof Event)
                 {
